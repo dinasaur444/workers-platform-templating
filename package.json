@@ -1,0 +1,36 @@
+{
+  "name": "workers-platform-templating",
+  "version": "1.0.0",
+  "description": "A template for building website hosting platforms using Cloudflare Workers for Platforms. Deploy static sites and custom Workers code through a simple web interface.",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240329.0",
+    "typescript": "^5.0.0",
+    "wrangler": "^4.54.0"
+  },
+  "scripts": {
+    "dev": "wrangler dev --remote",
+    "build": "node scripts/setup-quick.js",
+    "deploy": "node scripts/setup-quick.js && wrangler deploy",
+    "postdeploy": "node scripts/setup-quick.js",
+    "setup": "node scripts/setup.js",
+    "setup:quick": "node scripts/setup-quick.js"
+  },
+  "dependencies": {
+    "hono": "^4.2.1",
+    "workers-qb": "^0.1.1"
+  },
+  "cloudflare": {
+    "bindings": {
+      "CUSTOM_DOMAIN": {
+        "description": "(Optional) Your platform's domain, e.g. `myplatform.com`. Leave empty to use workers.dev"
+      },
+      "CLOUDFLARE_API_TOKEN": {
+        "description": "(Optional) API token with **SSL and Certificates Edit** permission for custom domain support. [Create token](https://dash.cloudflare.com/profile/api-tokens)"
+      }
+    }
+  }
+}
